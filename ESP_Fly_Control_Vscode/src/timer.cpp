@@ -16,24 +16,9 @@ timerAlarmEnable(timer);
 
 }
 
-//定时中断
+//定时中断 暂时不用
 void timer_interrupt(){
 
-      // count++;
-      // count2++;
-      // if(count==2)
-      // {
-      //   flag=1;
-      //   count=0;
-      // }
-
-      // if(count2==50)
-      // flag2=2;
-      // if(count2==100)
-      // {
-      //   flag2=3;
-      //   LEDset=!LEDset;
-      //   count2=0; 
-      // }
 }
+
 
