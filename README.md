@@ -47,8 +47,9 @@ OLED实时显示电机状态和飞行数据
 
 🔧 控制系统设计
 PID控制结构
-text
+
 光流速度环(外环) → 角度环(中环) → 角速度环(内环)
+
 1. 速度环（光流传感器）
 控制X/Y方向速度
 
@@ -69,7 +70,7 @@ text
 实现快速响应
 
 电机混控算法
-cpp
+
 motor_output[0] = throttle + (target_roll_rate + target_pitch_rate - target_yaw_rate) * 2;  //右下
 
 motor_output[1] = throttle + (-target_roll_rate + target_pitch_rate + target_yaw_rate) * 2; //右上 
@@ -80,31 +81,46 @@ motor_output[3] = throttle + (-target_roll_rate - target_pitch_rate - target_yaw
 
 🛡️ 安全保护机制
 1. 倾角保护
-cpp
+
 if(abs(roll_error)>30 || abs(pitch_error)>30) {
-    fly_protect = 0; // 立即切断电机
+    fly_protect = 0; 
 }
+
+// 立即切断电机
+
 2. 角速度保护
-cpp
+
 if(abs(gyroX)>120 || abs(gyroY)>120) {
     fly_protect = 0; // 陀螺仪异常保护
 }
-3. 高度限制
-cpp
+
+4. 高度限制
+   
 if(Z_distant > 1500) {
     fly_protect = 2; // 限高保护，逐渐降低动力
 }
+
 📊 蓝牙控制指令
-按键	功能
+功能
+
 1	油门增加
+
 2	油门减少，速度归零
+
 3	电机全速测试
+
 4	电机低速测试
+
 5	缓降模式
+
 6	Y方向正速度
+
 7	Y方向负速度
+
 8	X方向正速度
+
 9	X方向负速度
+
 ⚙️ 硬件配置
 主要组件
 主控: ESP32 (240MHz)
@@ -120,7 +136,7 @@ if(Z_distant > 1500) {
 执行器: 4×无刷电机 + ESC
 
 PWM通道分配
-cpp
+
 CHANNEL0 → 右上电机
 CHANNEL1 → 右下电机  
 CHANNEL2 → 左上电机
@@ -142,10 +158,13 @@ CPU频率锁定240MHz确保稳定性
 
 🎯 调参指南
 姿态环参数
-cpp
+c
 PID_Params roll_pid = {0.52f, 0.13, 0.17, 30, 6};
+
 PID_Params pitch_pid = {0.52f, 0.13, 0.17, 30, 6};
+
 PID_Params yaw_pid = {-0.02, -0.02, 0.2, 180, 5};
+
 飞行模式
 手动模式: 油门 < 520，直接姿态控制
 
