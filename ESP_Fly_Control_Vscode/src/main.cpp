@@ -35,17 +35,17 @@ void remoteDataTask(void *parameter) {
         pm.setTextColor(SSD1306_WHITE);
         pm.setTextSize(2);
         pm.setCursor(0,0);
-        pm.println(local_motor_output[3]);   //左上 - 使用本地副本
+        pm.println(local_motor_output[3]);   //左上旋翼
         pm.setCursor(64,0);
-        pm.println(local_motor_output[1]);   //右上 - 使用本地副本
+        pm.println(local_motor_output[1]);   //右上旋翼
         pm.setCursor(64,48); 
-        pm.println(local_motor_output[0]);   //右下 - 使用本地副本
+        pm.println(local_motor_output[0]);   //右下旋翼
         pm.setCursor(0,48);  
-        pm.println(local_motor_output[2]);   //左下 - 使用本地副本
+        pm.println(local_motor_output[2]);   //左下旋翼
         pm.setCursor(0,24);
-        pm.println(target_roll);          // 使用本地副本
+        pm.println(target_roll);          
         pm.setCursor(64,24);
-        pm.println(target_X_speed);          // 使用本地副本
+        pm.println(target_X_speed);         
        
         pm.display(); // 这个I2C操作较慢，但不阻塞其他任务
      
@@ -69,12 +69,6 @@ void remoteDataTask(void *parameter) {
                         target_X_speed=0;
                         target_Y_speed=0;
                         break;
-                    // case 6:
-                    //     P_roll -= 0.003;
-                    //     break;
-                    // case 7:
-                    //     P_roll += 0.003;
-                    //     break;
                 }
                 xSemaphoreGive(xMutex);
             }
@@ -180,6 +174,7 @@ void loop() {
 
     delay(1000); // 防止看门狗复位
 }
+
 
 
 
