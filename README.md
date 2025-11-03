@@ -71,9 +71,13 @@ text
 电机混控算法
 cpp
 motor_output[0] = throttle + (target_roll_rate + target_pitch_rate - target_yaw_rate) * 2;  //右下
-motor_output[1] = throttle + (-target_roll_rate + target_pitch_rate + target_yaw_rate) * 2; //右上  
+
+motor_output[1] = throttle + (-target_roll_rate + target_pitch_rate + target_yaw_rate) * 2; //右上 
+
 motor_output[2] = throttle + (target_roll_rate - target_pitch_rate + target_yaw_rate) * 2;  //左下
+
 motor_output[3] = throttle + (-target_roll_rate - target_pitch_rate - target_yaw_rate) * 2; //左上
+
 🛡️ 安全保护机制
 1. 倾角保护
 cpp
