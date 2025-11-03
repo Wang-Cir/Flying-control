@@ -172,16 +172,16 @@ void PID_Control() {
         motor_output[3] = 400;
     }
     if(num == 6) {
-         target_Y_speed = 100.0f; // 前进
+         target_Y_speed = 20.0f; // 前进
      } 
      if(num == 7) {
-         target_Y_speed = -100.0f; // 后退
+         target_Y_speed = -20.0f; // 后退
      }
      if(num == 8) {
-         target_X_speed = 100.0f; // 前进
+         target_X_speed = 20.0f; // 前进
      } 
      if(num == 9) {
-         target_X_speed = -100.0f; // 后退
+         target_X_speed = -20.0f; // 后退
      }
 
      if(num == 5) 
@@ -192,14 +192,6 @@ motor_output[1]*= 0.99;
 motor_output[2]*= 0.99;
 motor_output[3]*= 0.99;
       }          
-    //else if(num == 10) { // 假设9为右移
-    //     DIR_Down = 5.0f;
-    // } else if(num == 11) { // 假设10为左移
-    //     DIR_Down = -5.0f;
-    // } else if(num == 5) { // 停止移动
-    //     DIR_Down = 0;
-    //     DIR_UP = 0;
-    // }
 
     // 5. 安全保护
     if(abs(roll_error) > 30 || abs(pitch_error) > 30 || abs(gyroX) > 120 || abs(gyroY) > 120) {
@@ -224,7 +216,7 @@ motor_output[3]*= 0.99;
 
 
 
-
+//串环
 // #include "head.h"
 // float P_roll;
 // int PID_flag;
@@ -517,4 +509,5 @@ motor_output[3]*= 0.99;
 //     motor_output[i] = constrain(motor_output[i], 0, 800);
 // }
 // }
+
   
