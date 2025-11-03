@@ -7,7 +7,7 @@ int code,num,led_set;
 
 // 创建互斥锁用于保护共享资源
 SemaphoreHandle_t xMutex;
-
+//运行蓝牙wifi等外设
 void remoteDataTask(void *parameter) {
     TickType_t xLastWakeTime;
     const TickType_t xFrequency = 20; // 20ms周期
@@ -47,7 +47,7 @@ void remoteDataTask(void *parameter) {
         pm.setCursor(64,24);
         pm.println(target_X_speed);         
        
-        pm.display(); // 这个I2C操作较慢，但不阻塞其他任务
+        pm.display(); // 刷新显示
      
         // 蓝牙数据处理
         if(BT.available()) {
@@ -75,7 +75,7 @@ void remoteDataTask(void *parameter) {
         }
     }
 }
-
+//运行pid平衡算法
 void imuControlTask(void *parameter) {
 
     TickType_t xLastWakeTime;
@@ -174,6 +174,7 @@ void loop() {
 
     delay(1000); // 防止看门狗复位
 }
+
 
 
 
